@@ -1,0 +1,2083 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#100d27">
+<title>NỊVERSE ULTRA ✦ Happy Birthday Nị</title>
+
+<style>
+/* =========================================================
+   NỊVERSE ULTRA — CINEMATIC EDITION
+   One-file birthday experience
+   ========================================================= */
+
+:root {
+  --night: #090817;
+  --deep: #100d27;
+  --violet: #9d8aff;
+  --pink: #ffb7d8;
+  --cream: #fff3e9;
+  --muted: #c7c0e5;
+  --glass: rgba(255,255,255,.075);
+  --line: rgba(255,255,255,.15);
+  --shadow: 0 24px 80px rgba(0,0,0,.32);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 15% 15%, #35235b 0%, transparent 38%),
+    radial-gradient(ellipse at 85% 85%, #4d224f 0%, transparent 35%),
+    linear-gradient(135deg, var(--night), var(--deep) 55%, #1a102e);
+  color: white;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+}
+
+button:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 4px;
+}
+
+button,
+a {
+  touch-action: manipulation;
+}
+
+#universe {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#stars,
+#fx {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.aurora {
+  position: absolute;
+  width: 75vw;
+  height: 75vw;
+  max-width: 900px;
+  max-height: 900px;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: .17;
+  animation: auroraDrift 20s ease-in-out infinite alternate;
+}
+
+.aurora.one {
+  background: #9c6bff;
+  left: -25%;
+  top: -35%;
+}
+
+.aurora.two {
+  background: #ff78b9;
+  right: -30%;
+  bottom: -40%;
+  animation-delay: -8s;
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .055;
+  z-index: 3;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.65'/%3E%3C/svg%3E");
+}
+
+#app {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
+
+.topbar {
+  position: fixed;
+  z-index: 20;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 17px 24px;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.topbar > * {
+  pointer-events: auto;
+}
+
+.brand {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .22em;
+  color: #f8eaff;
+  text-shadow: 0 0 25px #d1a2ff66;
+}
+
+.top-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  color: white;
+  background: rgba(18,14,42,.65);
+  backdrop-filter: blur(15px);
+  cursor: pointer;
+  transition: .25s ease;
+}
+
+.icon-btn:hover {
+  background: rgba(255,255,255,.15);
+  transform: translateY(-2px);
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  padding: 88px 22px 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(20px) scale(.985);
+  transition:
+    opacity .65s ease,
+    transform .75s cubic-bezier(.2,.7,.2,1),
+    visibility .65s;
+}
+
+.scene.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.scene-inner {
+  width: min(100%, 880px);
+  max-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #c8a4ff66 transparent;
+  padding: 12px 8px 20px;
+  text-align: center;
+}
+
+.scene-inner::-webkit-scrollbar {
+  width: 5px;
+}
+
+.scene-inner::-webkit-scrollbar-thumb {
+  background: #c8a4ff66;
+  border-radius: 20px;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: #d8caff;
+  margin-bottom: 18px;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+.hero-title {
+  font-size: clamp(55px, 11vw, 112px);
+  line-height: .95;
+  letter-spacing: -.065em;
+  margin: 0 0 24px;
+  font-weight: 900;
+  background: linear-gradient(110deg, #fff 5%, #ffd8ed 36%, #b8a5ff 72%, #fff 100%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 7s linear infinite;
+  filter: drop-shadow(0 0 28px #c39aff25);
+}
+
+.script {
+  font-family: "Brush Script MT", "Segoe Script", cursive;
+  color: #ffc6e4;
+  font-weight: 500;
+  font-size: clamp(27px, 5vw, 44px);
+}
+
+.subtitle {
+  color: var(--muted);
+  line-height: 1.9;
+  max-width: 620px;
+  margin: 0 auto 28px;
+  font-size: clamp(14px, 2.5vw, 17px);
+}
+
+.glass {
+  background: linear-gradient(145deg, rgba(255,255,255,.105), rgba(255,255,255,.035));
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(20px);
+}
+
+.content-card {
+  width: min(100%, 700px);
+  margin: 0 auto;
+  padding: clamp(22px, 5vw, 42px);
+  text-align: left;
+}
+
+.content-card h2 {
+  text-align: center;
+  font-size: clamp(28px, 5vw, 43px);
+  margin-bottom: 20px;
+  letter-spacing: -.035em;
+}
+
+.content-card p {
+  color: #e3dcf7;
+  line-height: 1.95;
+  font-size: 15px;
+}
+
+.primary-btn,
+.secondary-btn {
+  border: 0;
+  cursor: pointer;
+  border-radius: 999px;
+  padding: 14px 23px;
+  transition: transform .25s, box-shadow .25s, background .25s;
+}
+
+.primary-btn {
+  color: #261438;
+  font-weight: 800;
+  background: linear-gradient(110deg, #ffe3f0, #cdbbff);
+  box-shadow: 0 10px 35px #c4a3ff2b;
+}
+
+.primary-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 45px #c4a3ff55;
+}
+
+.secondary-btn {
+  color: white;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.07);
+}
+
+.secondary-btn:hover {
+  background: rgba(255,255,255,.14);
+  transform: translateY(-2px);
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.orbit {
+  width: 170px;
+  height: 170px;
+  position: relative;
+  margin: 0 auto 25px;
+  display: grid;
+  place-items: center;
+}
+
+.orbit::before,
+.orbit::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid #f7c6ff44;
+  border-radius: 50%;
+  animation: orbitSpin 12s linear infinite;
+}
+
+.orbit::after {
+  inset: 17px -13px;
+  transform: rotate(60deg);
+  border-color: #c6b3ff55;
+  animation-duration: 18s;
+}
+
+.orbit-emoji {
+  font-size: 65px;
+  filter: drop-shadow(0 0 30px #ffaddb77);
+  animation: floaty 4s ease-in-out infinite;
+}
+
+.wish-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.wish-option {
+  border: 1px solid var(--line);
+  color: white;
+  background: rgba(255,255,255,.055);
+  border-radius: 18px;
+  padding: 18px 12px;
+  cursor: pointer;
+  transition: .25s ease;
+}
+
+.wish-option:hover,
+.wish-option.selected {
+  border-color: #f7c4e8;
+  background: #d9a8ff20;
+  transform: translateY(-3px);
+}
+
+.wish-option strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.wish-option span {
+  font-size: 13px;
+  color: #cfc6e7;
+  line-height: 1.6;
+}
+
+.result-note {
+  min-height: 55px;
+  color: #ffe1f2;
+  line-height: 1.8;
+  margin-top: 20px;
+}
+
+.gift-stage {
+  perspective: 900px;
+  width: 240px;
+  height: 220px;
+  margin: 25px auto;
+  position: relative;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.gift {
+  width: 150px;
+  height: 125px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: giftFloat 3s ease-in-out infinite;
+}
+
+.gift-body {
+  position: absolute;
+  width: 150px;
+  height: 105px;
+  left: 0;
+  bottom: 0;
+  border-radius: 8px 8px 14px 14px;
+  background: linear-gradient(135deg, #ffb5d5, #a98af7);
+  box-shadow: 0 22px 40px #0005, inset -10px -5px 20px #5e318a22;
+}
+
+.gift-body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 62px;
+  width: 27px;
+  background: linear-gradient(90deg, #fff0c8, #fff8e5);
+}
+
+.gift-lid {
+  position: absolute;
+  left: -9px;
+  top: 9px;
+  width: 168px;
+  height: 32px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #ffd0e4, #d1b7ff);
+  transform-origin: 10% 90%;
+  transition: transform .9s cubic-bezier(.2,.8,.2,1);
+  z-index: 3;
+  box-shadow: 0 8px 20px #0003;
+}
+
+.gift-lid::before {
+  content: "";
+  position: absolute;
+  width: 26px;
+  top: 0;
+  bottom: 0;
+  left: 70px;
+  background: #fff3d8;
+}
+
+.gift.open .gift-lid {
+  transform: translate(-35px,-75px) rotate(-25deg);
+}
+
+.gift-bow {
+  position: absolute;
+  left: 50%;
+  top: -16px;
+  width: 70px;
+  height: 34px;
+  transform: translateX(-50%);
+  z-index: 4;
+}
+
+.gift-bow::before,
+.gift-bow::after {
+  content: "";
+  position: absolute;
+  width: 34px;
+  height: 25px;
+  border: 8px solid #fff0d1;
+  border-radius: 50% 50% 20% 50%;
+}
+
+.gift-bow::before {
+  left: 0;
+  transform: rotate(25deg);
+}
+
+.gift-bow::after {
+  right: 0;
+  transform: scaleX(-1) rotate(25deg);
+}
+
+.gift-inside {
+  position: absolute;
+  top: -58px;
+  left: 0;
+  right: 0;
+  font-size: 50px;
+  opacity: 0;
+  transform: translateY(30px) scale(.5);
+  transition: .7s .25s;
+  z-index: 2;
+}
+
+.gift.open .gift-inside {
+  opacity: 1;
+  transform: translateY(-28px) scale(1);
+}
+
+.gift-note {
+  color: #d8cdec;
+  font-size: 13px;
+}
+
+.letter-paper {
+  background:
+    radial-gradient(circle at 10% 10%, #ffe7f1, transparent 40%),
+    linear-gradient(145deg, #fff7ef, #f7e7f0);
+  color: #47334b;
+  border-radius: 8px;
+  padding: clamp(24px, 5vw, 42px);
+  box-shadow: 0 25px 70px #0005;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.letter-paper::before {
+  content: "✦";
+  position: absolute;
+  right: 18px;
+  top: 12px;
+  color: #e7a9cc;
+  font-size: 28px;
+}
+
+.letter-paper h2 {
+  font-family: "Brush Script MT", "Segoe Script", cursive;
+  font-size: 38px;
+  color: #a45186;
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.letter-paper p {
+  color: #57425b;
+  font-size: 15px;
+  line-height: 2;
+  min-height: 25px;
+}
+
+.letter-sign {
+  text-align: right;
+  font-family: "Brush Script MT", "Segoe Script", cursive;
+  color: #a45186;
+  font-size: 26px;
+  margin-top: 22px;
+}
+
+.letter-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.story-note {
+  border-left: 2px solid #f4bbde;
+  padding: 5px 0 5px 20px;
+  margin: 25px 0;
+}
+
+.story-note p {
+  margin-bottom: 12px;
+}
+
+.small-note {
+  font-size: 12px;
+  color: #c4b9df;
+  line-height: 1.8;
+}
+
+.progress {
+  position: fixed;
+  z-index: 20;
+  left: 50%;
+  bottom: 27px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 999px;
+  background: rgba(15,11,37,.66);
+  border: 1px solid #ffffff20;
+  backdrop-filter: blur(15px);
+}
+
+.progress-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  padding: 0;
+  border: 0;
+  background: #ffffff40;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.progress-dot.active {
+  width: 24px;
+  background: linear-gradient(90deg, #ffb5db, #c3b2ff);
+  box-shadow: 0 0 15px #d8b2ff66;
+}
+
+.nav-arrows {
+  position: fixed;
+  z-index: 20;
+  left: 0;
+  right: 0;
+  bottom: 22px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  pointer-events: none;
+}
+
+.nav-arrows button {
+  pointer-events: auto;
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  color: white;
+  background: #191332bb;
+  border: 1px solid #ffffff25;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+.nav-arrows button:disabled {
+  opacity: .25;
+  cursor: default;
+}
+
+.final-title {
+  font-size: clamp(39px, 9vw, 88px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -.06em;
+  background: linear-gradient(100deg, #fff1d9, #ffb9e2, #c4b4ff, #fff1d9);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 5s linear infinite;
+}
+
+.final-date {
+  letter-spacing: .35em;
+  color: #d4c7f4;
+  font-size: 11px;
+  margin-top: 25px;
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  width: min(100%, 390px);
+  margin: 24px auto;
+}
+
+.star-tile {
+  aspect-ratio: 1;
+  border: 1px solid #ffffff22;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #ffffff12, #ffffff04);
+  color: #ffe4f3;
+  font-size: 28px;
+  cursor: pointer;
+  transition: .25s ease;
+}
+
+.star-tile:hover {
+  transform: translateY(-3px) scale(1.02);
+  background: #d6b7ff20;
+}
+
+.star-tile.found {
+  background: #ffcee722;
+  border-color: #ffb5dc;
+}
+
+.game-status {
+  color: #e6d9ff;
+  line-height: 1.8;
+  min-height: 50px;
+}
+
+.secret-star {
+  position: fixed;
+  z-index: 18;
+  right: 24px;
+  bottom: 86px;
+  border: 0;
+  background: transparent;
+  font-size: 22px;
+  cursor: pointer;
+  opacity: .45;
+  transition: .3s;
+  filter: drop-shadow(0 0 8px #ffe5a6);
+}
+
+.secret-star:hover {
+  opacity: 1;
+  transform: rotate(20deg) scale(1.2);
+}
+
+#toast {
+  position: fixed;
+  z-index: 60;
+  left: 50%;
+  bottom: 90px;
+  transform: translate(-50%, 20px);
+  max-width: calc(100% - 36px);
+  padding: 13px 18px;
+  border-radius: 999px;
+  border: 1px solid #ffffff25;
+  background: #1b1438ed;
+  color: white;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: .35s;
+  box-shadow: var(--shadow);
+  font-size: 13px;
+}
+
+#toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.modal-backdrop {
+  position: fixed;
+  z-index: 50;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background: #080615bd;
+  backdrop-filter: blur(12px);
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s;
+}
+
+.modal-backdrop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  width: min(100%, 470px);
+  padding: 30px;
+  text-align: center;
+}
+
+.modal h2 {
+  font-size: 29px;
+  margin-bottom: 15px;
+}
+
+.modal p {
+  color: #d9d0ed;
+  line-height: 1.9;
+}
+
+.heart-float {
+  position: fixed;
+  z-index: 15;
+  pointer-events: none;
+  animation: heartRise 2.2s ease-out forwards;
+}
+
+.firework-dot {
+  position: fixed;
+  z-index: 10;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: fireworkFly 1.4s ease-out forwards;
+  box-shadow: 0 0 12px currentColor;
+}
+
+.fade-up {
+  animation: fadeUp .9s both;
+}
+
+@keyframes shimmer {
+  to { background-position: 220% center; }
+}
+
+@keyframes orbitSpin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes floaty {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes giftFloat {
+  0%,100% { transform: translateY(0) rotateY(-4deg); }
+  50% { transform: translateY(-7px) rotateY(4deg); }
+}
+
+@keyframes auroraDrift {
+  from { transform: translate(0,0) scale(1); }
+  to { transform: translate(12vw,8vh) scale(1.2); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heartRise {
+  0% { opacity: 0; transform: translateY(0) scale(.5) rotate(0); }
+  15% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-180px) scale(1.3) rotate(30deg); }
+}
+
+@keyframes fireworkFly {
+  0% { opacity: 1; transform: translate(0,0) scale(1); }
+  100% { opacity: 0; transform: translate(var(--dx),var(--dy)) scale(.2); }
+}
+
+@media (max-width: 600px) {
+  .topbar {
+    padding: 13px 14px;
+  }
+
+  .brand {
+    font-size: 10px;
+    letter-spacing: .13em;
+  }
+
+  .icon-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .scene {
+    padding: 76px 14px 86px;
+  }
+
+  .scene-inner {
+    padding: 6px 3px 14px;
+  }
+
+  .content-card {
+    padding: 23px 19px;
+    border-radius: 22px;
+  }
+
+  .content-card p,
+  .letter-paper p {
+    font-size: 14px;
+  }
+
+  .wish-grid {
+    gap: 9px;
+  }
+
+  .wish-option {
+    padding: 15px 9px;
+  }
+
+  .wish-option span {
+    font-size: 12px;
+  }
+
+  .progress {
+    bottom: 22px;
+    gap: 6px;
+    padding: 9px 12px;
+  }
+
+  .nav-arrows {
+    bottom: 15px;
+    padding: 0 10px;
+  }
+
+  .nav-arrows button {
+    width: 38px;
+    height: 38px;
+  }
+
+  .secret-star {
+    right: 15px;
+    bottom: 76px;
+  }
+
+  .letter-paper {
+    padding: 24px 20px;
+  }
+
+  .letter-paper h2 {
+    font-size: 32px;
+  }
+}
+
+@media (max-height: 650px) {
+  .scene {
+    padding-top: 65px;
+    padding-bottom: 72px;
+  }
+
+  .orbit {
+    width: 115px;
+    height: 115px;
+    margin-bottom: 12px;
+  }
+
+  .orbit-emoji {
+    font-size: 45px;
+  }
+
+  .hero-title {
+    font-size: clamp(46px, 8vw, 75px);
+  }
+
+  .subtitle {
+    margin-bottom: 18px;
+    line-height: 1.65;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* ===== NỊVERSE BIRTHDAY LOCK ===== */
+#birthday-lock {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow: hidden;
+  text-align: center;
+  color: #fff;
+  background:
+    radial-gradient(ellipse at 50% 35%, #48316d88, transparent 55%),
+    linear-gradient(145deg, #080817, #17102d, #080817);
+  font-family: inherit;
+}
+
+#birthday-lock.show {
+  display: flex;
+}
+
+#birthday-lock .lock-content {
+  width: min(520px, 100%);
+  padding: 30px 22px;
+  border: 1px solid #ffffff30;
+  border-radius: 26px;
+  background: #ffffff0b;
+  box-shadow: 0 0 70px #b58aff22;
+  backdrop-filter: blur(12px);
+}
+
+#birthday-lock .lock-icon {
+  font-size: 54px;
+  margin-bottom: 18px;
+  animation: lockFloat 3s ease-in-out infinite;
+}
+
+#birthday-lock h1 {
+  font-size: clamp(27px, 6vw, 42px);
+  margin: 0 0 14px;
+  background: linear-gradient(90deg, #fff0fa, #d6b7ff, #fff0fa);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+#birthday-lock p {
+  line-height: 1.8;
+  color: #e5dcf7;
+}
+
+#birthday-countdown {
+  margin: 24px 0;
+  font-size: clamp(22px, 5vw, 34px);
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #ffe1f3;
+  font-variant-numeric: tabular-nums;
+}
+
+#birthday-lock .lock-note {
+  font-size: 13px;
+  opacity: .75;
+}
+
+@keyframes lockFloat {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+</style>
+</head>
+
+<body>
+  
+<div id="birthday-lock" role="dialog" aria-modal="true"
+     aria-labelledby="birthday-lock-title">
+  <div class="lock-content">
+    <div class="lock-icon">🔐</div>
+    <h1 id="birthday-lock-title">Một thiên hà đang chờ Nị ✨</h1>
+    <p>
+      Tớ đã chuẩn bị một món quà nhỏ dành riêng cho Nị.
+      Nhưng hãy đợi đến đúng ngày sinh nhật nhé!
+    </p>
+    <p>🎂 Hẹn gặp Nị vào ngày 11 tháng 3 🎂</p>
+    <div id="birthday-countdown">Đang tính thời gian...</div>
+    <p class="lock-note">
+      Khi ngày đặc biệt đến, cánh cửa NỊVERSE sẽ tự mở ra.
+    </p>
+  </div>
+</div>
+<div id="universe" aria-hidden="true">
+  <canvas id="stars"></canvas>
+  <canvas id="fx"></canvas>
+  <div class="aurora one"></div>
+  <div class="aurora two"></div>
+</div>
+<div class="grain"></div>
+
+<div id="app">
+  <header class="topbar">
+    <div class="brand">NỊVERSE <span style="color:#ffc5e5">✦</span> ULTRA</div>
+    <div class="top-actions">
+      <button class="icon-btn" id="musicBtn" aria-label="Bật hoặc tắt nhạc" title="Nhạc piano">♫</button>
+      <button class="icon-btn" id="sparkBtn" aria-label="Tạo hiệu ứng lấp lánh" title="Lấp lánh">✧</button>
+      <button class="icon-btn" id="fullBtn" aria-label="Toàn màn hình" title="Toàn màn hình">⛶</button>
+    </div>
+  </header>
+
+  <!-- SCENE 0: INTRO -->
+  <section class="scene active" data-scene="0">
+    <div class="scene-inner">
+      <div class="orbit"><div class="orbit-emoji">🌙</div></div>
+      <div class="eyebrow">A little universe made for you</div>
+      <h1 class="hero-title">Hello,<br>Nị.</h1>
+      <p class="subtitle">
+        Có một vũ trụ nhỏ đang chờ cậu khám phá.<br>
+        Hôm nay, mọi vì sao đều dành một chút lấp lánh cho cậu.
+      </p>
+      <div class="script" style="margin-bottom:25px">Happy Birthday ✦</div>
+      <button class="primary-btn" data-go="1">Mở món quà nhỏ →</button>
+      <p class="small-note" style="margin-top:18px">Đeo tai nghe nếu cậu muốn nghe nhạc piano nhé.</p>
+    </div>
+  </section>
+
+  <!-- SCENE 1: BIRTHDAY WISH -->
+  <section class="scene" data-scene="1">
+    <div class="scene-inner">
+      <div class="eyebrow">Chapter 01 · Your special day</div>
+      <div class="content-card glass">
+        <div style="text-align:center;font-size:42px;margin-bottom:12px">🎂 ✨ 🎂</div>
+        <h2>Chúc mừng sinh nhật Nị!</h2>
+        <p>
+          Chúc Nị có một ngày sinh nhật thật vui, nhận được thật nhiều
+          điều dễ thương và luôn có những người chân thành ở bên.
+        </p>
+        <p>
+          Mong rằng tuổi mới sẽ mang đến cho cậu nhiều trải nghiệm đẹp,
+          những cơ hội mới và đủ can đảm để theo đuổi điều cậu thích.
+        </p>
+        <p>
+          Nếu có ngày không vui, mong cậu vẫn nhớ rằng một ngày tệ
+          không có nghĩa là cả cuộc sống đều tệ. Cứ nghỉ ngơi, rồi
+          từ từ bước tiếp theo cách của riêng mình.
+        </p>
+        <p style="text-align:center;color:#ffc9e8;font-size:18px;margin-bottom:0">
+          Mong cậu luôn được yêu thương và là chính mình. ♡
+        </p>
+      </div>
+      <div class="button-row">
+        <button class="primary-btn" data-go="2">Chọn một điều ước ✦</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 2: WISH PICKER -->
+  <section class="scene" data-scene="2">
+    <div class="scene-inner">
+      <div class="eyebrow">Chapter 02 · Make a wish</div>
+      <h2 style="font-size:clamp(30px,6vw,48px);margin-bottom:8px">Nếu được chọn một điều…</h2>
+      <p class="subtitle">Cậu muốn tuổi mới của mình có thêm điều gì nhất?</p>
+
+      <div class="wish-grid">
+        <button class="wish-option" data-wish="happy">
+          <strong>☀️ Bình yên</strong>
+          <span>Mỗi ngày đều nhẹ nhàng hơn.</span>
+        </button>
+        <button class="wish-option" data-wish="dream">
+          <strong>🌠 Ước mơ</strong>
+          <span>Từng bước đến gần điều mình muốn.</span>
+        </button>
+        <button class="wish-option" data-wish="friend">
+          <strong>🫶 Người thương</strong>
+          <span>Có người hiểu và trân trọng mình.</span>
+        </button>
+        <button class="wish-option" data-wish="adventure">
+          <strong>🪐 Trải nghiệm</strong>
+          <span>Thêm nhiều kỷ niệm đáng nhớ.</span>
+        </button>
+      </div>
+
+      <div class="result-note" id="wishResult" aria-live="polite">
+        Chạm vào một điều ước để khám phá lời nhắn dành cho cậu.
+      </div>
+      <div class="button-row">
+        <button class="secondary-btn" id="randomWishBtn">Chọn ngẫu nhiên ✨</button>
+        <button class="primary-btn" data-go="3">Tiếp tục →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 3: GIFT BOX -->
+  <section class="scene" data-scene="3">
+    <div class="scene-inner">
+      <div class="eyebrow">Chapter 03 · A little surprise</div>
+      <h2 style="font-size:clamp(31px,6vw,48px)">Cậu có một món quà!</h2>
+      <p class="subtitle">Nhấn vào hộp quà để mở bí mật bên trong nhé.</p>
+
+      <div class="gift-stage" id="giftStage" role="button" tabindex="0" aria-label="Mở hộp quà">
+        <div class="gift" id="gift">
+          <div class="gift-inside">💝</div>
+          <div class="gift-body"></div>
+          <div class="gift-lid"><div class="gift-bow"></div></div>
+        </div>
+      </div>
+
+      <div id="giftMessage" class="result-note" aria-live="polite">
+        Chưa mở đâu nha… chạm thử đi! 🎁
+      </div>
+
+      <div class="button-row">
+        <button class="secondary-btn" id="giftAgainBtn">Mở lại hộp quà</button>
+        <button class="primary-btn" data-go="4">Đọc lá thư →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 4: LETTER -->
+  <section class="scene" data-scene="4">
+    <div class="scene-inner">
+      <div class="eyebrow">Chapter 04 · A letter for Nị</div>
+      <div class="letter-paper">
+        <h2>Gửi Nị,</h2>
+        <div id="letterContent" aria-live="polite">
+          <p>Chào Nị,</p>
+          <p>
+            Đây chỉ là một món quà nhỏ thôi, nhưng tớ đã muốn làm nó
+            thành một nơi có nhiều điều dễ thương để cậu khám phá.
+          </p>
+          <p>
+            Sinh nhật không chỉ là thêm một tuổi, mà còn là dịp để
+            nhìn lại những điều mình đã làm được và bắt đầu những
+            điều mới mà mình mong chờ.
+          </p>
+          <p>
+            Mong cậu sẽ gặp những người thật lòng, có những ngày
+            vui đến mức muốn kể cho cả thế giới nghe, và có đủ
+            kiên nhẫn với bản thân trong những ngày chưa ổn.
+          </p>
+          <p>
+            Cảm ơn cậu đã dành thời gian mở món quà này.
+            Chúc Nị sinh nhật vui vẻ, luôn mạnh khỏe và gặp nhiều may mắn.
+          </p>
+        </div>
+        <div class="letter-sign">Một món quà nhỏ dành cho Nị ♡</div>
+      </div>
+
+      <div class="letter-controls">
+        <button class="secondary-btn" id="typeLetterBtn">Hiện chữ từng dòng ✍️</button>
+        <button class="primary-btn" data-go="5">Một lời tâm sự →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 5: PERSONAL MESSAGE -->
+  <section class="scene" data-scene="5">
+    <div class="scene-inner">
+      <div class="eyebrow">Chapter 05 · Something personal</div>
+      <div class="content-card glass">
+        <div style="text-align:center;font-size:40px;margin-bottom:12px">💌</div>
+        <h2>Một chút tâm sự</h2>
+        <p>
+          Nị à, tớ muốn nhờ cậu một chuyện hơi riêng tư một chút.
+          Tớ vẫn đang suy nghĩ về chuyện của tớ và Thơ, và đôi khi
+          tớ không biết nên bắt đầu từ đâu để mọi thứ tốt hơn.
+        </p>
+        <div class="story-note">
+          <p>
+            Tớ hiểu rằng khi hai người dần xa cách, không phải cứ
+            cố gắng thật nhiều là mọi chuyện sẽ trở lại như trước.
+          </p>
+          <p>
+            Tớ muốn học cách nhìn lại những điều mình đã làm,
+            hiểu cảm xúc của người kia và nói chuyện chân thành
+            hơn, thay vì chỉ mong mọi thứ thay đổi ngay lập tức.
+          </p>
+          <p>
+            Nếu cậu có lời khuyên nào, tớ rất muốn được nghe.
+            Tớ không cần cậu phải giải quyết giúp tớ, chỉ mong có
+            thêm một góc nhìn để biết mình nên cư xử thế nào cho đúng.
+          </p>
+        </div>
+        <p>
+          Nếu hai người có cơ hội nói chuyện lại, tớ mong đó sẽ là
+          vì cả hai đều thật sự muốn. Tớ cũng hiểu rằng Thơ có cảm xúc
+          và lựa chọn riêng, và tớ cần tôn trọng điều đó.
+        </p>
+        <p style="text-align:center;color:#ffc7e6;margin-bottom:0">
+          Chân thành, kiên nhẫn và tôn trọng — có lẽ nên bắt đầu từ đó. ♡
+        </p>
+      </div>
+      <div class="button-row">
+        <button class="secondary-btn" id="adviceBtn">Một câu nhắc nhở cho tớ</button>
+        <button class="primary-btn" data-go="6">Đến lời chúc cuối →</button>
+      </div>
+      <div class="result-note" id="adviceResult" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- SCENE 6: GRAND FINALE -->
+  <section class="scene" data-scene="6">
+    <div class="scene-inner">
+      <div class="orbit"><div class="orbit-emoji">🌌</div></div>
+      <div class="eyebrow">Chapter 06 · The sky is yours</div>
+      <h1 class="final-title">HAPPY<br>BIRTHDAY<br>NỊ</h1>
+      <p class="subtitle" style="margin-top:24px">
+        Mong tuổi mới của cậu dịu dàng như ánh trăng,<br>
+        rực rỡ như pháo hoa và đầy bất ngờ như vũ trụ này.
+      </p>
+      <div class="script">Always keep shining ✦</div>
+      <div class="final-date">A LITTLE UNIVERSE · MADE WITH CARE</div>
+      <div class="button-row">
+        <button class="primary-btn" id="fireworkBtn">Thắp sáng bầu trời ✨</button>
+        <button class="secondary-btn" id="restartBtn">Khám phá lại từ đầu ↺</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="nav-arrows">
+    <button id="prevBtn" aria-label="Màn trước">←</button>
+    <button id="nextBtn" aria-label="Màn tiếp theo">→</button>
+  </div>
+
+  <nav class="progress" id="progress" aria-label="Chọn chương">
+    <button class="progress-dot active" data-nav="0" aria-label="Màn 1"></button>
+    <button class="progress-dot" data-nav="1" aria-label="Màn 2"></button>
+    <button class="progress-dot" data-nav="2" aria-label="Màn 3"></button>
+    <button class="progress-dot" data-nav="3" aria-label="Màn 4"></button>
+    <button class="progress-dot" data-nav="4" aria-label="Màn 5"></button>
+    <button class="progress-dot" data-nav="5" aria-label="Màn 6"></button>
+    <button class="progress-dot" data-nav="6" aria-label="Màn 7"></button>
+  </nav>
+
+  <button class="secret-star" id="secretStar" aria-label="Thông điệp bí mật" title="Một bí mật nho nhỏ">✦</button>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<div class="modal-backdrop" id="secretModal" role="dialog" aria-modal="true" aria-labelledby="secretTitle">
+  <div class="modal glass">
+    <div style="font-size:42px;margin-bottom:12px">🌟</div>
+    <h2 id="secretTitle">Một bí mật nho nhỏ</h2>
+    <p>
+      Nếu cậu đang đọc đến đây, nghĩa là cậu đã tìm thấy ngôi sao bí mật rồi!
+      Mong rằng hôm nay sẽ có ít nhất một điều khiến cậu mỉm cười,
+      và những ngày sau cũng sẽ có thêm nhiều điều như thế.
+    </p>
+    <p style="color:#ffc9e8">Cậu xứng đáng có một sinh nhật thật vui. ♡</p>
+    <button class="primary-btn" id="closeSecret">Cất bí mật lại ✨</button>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="gameModal" role="dialog" aria-modal="true" aria-labelledby="gameTitle">
+  <div class="modal glass">
+    <div style="font-size:35px">⭐</div>
+    <h2 id="gameTitle">Trò chơi: Tìm ngôi sao may mắn</h2>
+    <p>Chọn một ô để tìm ngôi sao ẩn. Cậu có tối đa 3 lượt mỗi ván!</p>
+    <div class="game-grid" id="gameGrid"></div>
+    <div class="game-status" id="gameStatus" aria-live="polite">
+      Chọn một ô bất kỳ để bắt đầu.
+    </div>
+    <div class="button-row">
+      <button class="secondary-btn" id="resetGame">Chơi lại</button>
+      <button class="primary-btn" id="closeGame">Đóng trò chơi</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  "use strict";
+
+  /* =========================================================
+     GENERAL HELPERS
+     ========================================================= */
+
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+
+  const scenes = $$(".scene");
+  const dots = $$(".progress-dot");
+  const totalScenes = scenes.length;
+
+  let currentScene = 0;
+  let toastTimer = null;
+
+  function showToast(message) {
+    const toast = $("#toast");
+    toast.textContent = message;
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("show"), 2600);
+  }
+
+  function navigateTo(index) {
+    const target = Math.max(0, Math.min(totalScenes - 1, Number(index)));
+    currentScene = target;
+
+    scenes.forEach((scene, i) => {
+      scene.classList.toggle("active", i === target);
+      scene.setAttribute("aria-hidden", i === target ? "false" : "true");
+    });
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("active", i === target);
+      if (i === target) {
+        dot.setAttribute("aria-current", "step");
+      } else {
+        dot.removeAttribute("aria-current");
+      }
+    });
+
+    $("#prevBtn").disabled = target === 0;
+    $("#nextBtn").disabled = target === totalScenes - 1;
+
+    if (target === 6) {
+      setTimeout(() => launchFireworks(3), 450);
+    }
+
+    if (target === 0) {
+      showToast("Chào mừng trở lại vũ trụ của Nị ✦");
+    }
+  }
+
+  $$("[data-go]").forEach(button => {
+    button.addEventListener("click", () => {
+      navigateTo(button.dataset.go);
+      tryStartMusic();
+    });
+  });
+
+  dots.forEach(dot => {
+    dot.addEventListener("click", () => navigateTo(dot.dataset.nav));
+  });
+
+  $("#prevBtn").addEventListener("click", () => navigateTo(currentScene - 1));
+  $("#nextBtn").addEventListener("click", () => navigateTo(currentScene + 1));
+  $("#restartBtn").addEventListener("click", () => navigateTo(0));
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "ArrowRight") navigateTo(currentScene + 1);
+    if (event.key === "ArrowLeft") navigateTo(currentScene - 1);
+
+    if (event.key === "Escape") {
+      $("#secretModal").classList.remove("show");
+      $("#gameModal").classList.remove("show");
+    }
+  });
+
+  /* =========================================================
+     MOBILE SWIPE NAVIGATION
+     ========================================================= */
+
+  let touchStartX = 0;
+  let touchStartY = 0;
+
+  document.addEventListener("touchstart", event => {
+    const touch = event.changedTouches[0];
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
+  }, { passive: true });
+
+  document.addEventListener("touchend", event => {
+    const touch = event.changedTouches[0];
+    const dx = touch.clientX - touchStartX;
+    const dy = touch.clientY - touchStartY;
+
+    if (Math.abs(dx) < 85 || Math.abs(dx) < Math.abs(dy) * 1.3) return;
+
+    if (event.target.closest("button, .modal, .gift-stage, .game-grid")) return;
+
+    if (dx < 0) navigateTo(currentScene + 1);
+    else navigateTo(currentScene - 1);
+  }, { passive: true });
+
+  /* =========================================================
+     FULLSCREEN
+     ========================================================= */
+
+  $("#fullBtn").addEventListener("click", async () => {
+    try {
+      if (!document.fullscreenElement) {
+        await document.documentElement.requestFullscreen();
+      } else {
+        await document.exitFullscreen();
+      }
+    } catch {
+      showToast("Trình duyệt này chưa cho phép bật toàn màn hình.");
+    }
+  });
+
+  /* =========================================================
+     AUDIO: SOFT SYNTHESIZED PIANO
+     Autoplay is attempted; browsers may require interaction.
+     ========================================================= */
+
+  let audioContext = null;
+  let musicEnabled = false;
+  let melodyTimer = null;
+  let melodyIndex = 0;
+  let audioReady = false;
+
+  const melody = [
+    [261.63, 0.00], [329.63, 0.45], [392.00, 0.90],
+    [329.63, 1.35], [293.66, 1.80], [349.23, 2.25],
+    [440.00, 2.70], [392.00, 3.15],
+    [261.63, 3.60], [329.63, 4.05], [392.00, 4.50],
+    [493.88, 4.95], [440.00, 5.40], [392.00, 5.85]
+  ];
+
+  function createAudioContext() {
+    if (!audioContext) {
+      const AudioCtor = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtor) {
+        showToast("Trình duyệt không hỗ trợ âm thanh Web Audio.");
+        return null;
+      }
+      audioContext = new AudioCtor();
+    }
+    return audioContext;
+  }
+
+  function playPianoNote(frequency, startTime, duration = 1.2, volume = 0.12) {
+    if (!audioContext || !musicEnabled) return;
+
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+    const filter = audioContext.createBiquadFilter();
+
+    oscillator.type = "sine";
+    oscillator.frequency.setValueAtTime(frequency, startTime);
+
+    filter.type = "lowpass";
+    filter.frequency.setValueAtTime(1800, startTime);
+
+    gain.gain.setValueAtTime(0.0001, startTime);
+    gain.gain.exponentialRampToValueAtTime(volume, startTime + 0.025);
+    gain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+
+    oscillator.connect(filter);
+    filter.connect(gain);
+    gain.connect(audioContext.destination);
+
+    oscillator.start(startTime);
+    oscillator.stop(startTime + duration + 0.05);
+  }
+
+  function playMelodyStep() {
+    if (!musicEnabled || !audioContext) return;
+
+    const item = melody[melodyIndex % melody.length];
+    const now = audioContext.currentTime;
+
+    playPianoNote(item[0], now, 1.15, 0.10);
+
+    if (melodyIndex % 2 === 0) {
+      const bass = item[0] / 2;
+      playPianoNote(bass, now, 1.5, 0.035);
+    }
+
+    melodyIndex++;
+  }
+
+  async function tryStartMusic() {
+    const context = createAudioContext();
+    if (!context) return false;
+
+    try {
+      if (context.state === "suspended") await context.resume();
+
+      musicEnabled = true;
+      audioReady = true;
+      $("#musicBtn").textContent = "♫";
+      $("#musicBtn").style.color = "#ffc4e5";
+      $("#musicBtn").title = "Tắt nhạc piano";
+
+      if (melodyTimer === null) {
+        playMelodyStep();
+        melodyTimer = setInterval(playMelodyStep, 650);
+      }
+
+      return true;
+    } catch (error) {
+      musicEnabled = false;
+      audioReady = false;
+      $("#musicBtn").textContent = "♫";
+      showToast("Chạm nút nhạc để bật piano nhé.");
+      return false;
+    }
+  }
+
+  function stopMusic() {
+    musicEnabled = false;
+    audioReady = false;
+    if (melodyTimer !== null) {
+      clearInterval(melodyTimer);
+      melodyTimer = null;
+    }
+    $("#musicBtn").textContent = "♫";
+    $("#musicBtn").style.color = "white";
+    $("#musicBtn").title = "Bật nhạc piano";
+  }
+
+  $("#musicBtn").addEventListener("click", async () => {
+    if (musicEnabled) {
+      stopMusic();
+      showToast("Đã tắt nhạc piano.");
+    } else {
+      const started = await tryStartMusic();
+      if (started) showToast("Piano đã bắt đầu phát ♫");
+    }
+  });
+
+  // Attempt autoplay when the page loads.
+  window.addEventListener("load", () => {
+    tryStartMusic();
+  });
+
+  // If autoplay is blocked, retry after the first real user gesture.
+  let firstGestureHandled = false;
+
+  async function handleFirstGesture() {
+    if (firstGestureHandled) return;
+    firstGestureHandled = true;
+    if (!musicEnabled) await tryStartMusic();
+  }
+
+  document.addEventListener("pointerdown", handleFirstGesture, { once: true });
+  document.addEventListener("keydown", handleFirstGesture, { once: true });
+
+  /* =========================================================
+     WISH PICKER
+     ========================================================= */
+
+  const wishMessages = {
+    happy: "Mong những ngày bình thường của cậu cũng có thật nhiều niềm vui nhỏ, và cậu luôn tìm được bình yên sau những ngày mệt.",
+    dream: "Mong những điều cậu đang ấp ủ sẽ dần thành hiện thực. Không cần vội, chỉ cần đừng quên điều khiến cậu bắt đầu.",
+    friend: "Mong cậu gặp được những người lắng nghe cậu, tôn trọng cậu và vui vì cậu được là chính mình.",
+    adventure: "Mong tuổi mới có nhiều chuyến đi, nhiều điều lần đầu thử sức và những kỷ niệm mà sau này nhớ lại cậu vẫn mỉm cười."
+  };
+
+  const wishButtons = $$(".wish-option");
+
+  function selectWish(key) {
+    wishButtons.forEach(button => {
+      button.classList.toggle("selected", button.dataset.wish === key);
+    });
+
+    $("#wishResult").textContent = wishMessages[key] || "Mong điều ước đẹp nhất sẽ tìm đến với cậu. ✨";
+    launchFireworks(1);
+  }
+
+  wishButtons.forEach(button => {
+    button.addEventListener("click", () => selectWish(button.dataset.wish));
+  });
+
+  $("#randomWishBtn").addEventListener("click", () => {
+    const keys = Object.keys(wishMessages);
+    const choice = keys[Math.floor(Math.random() * keys.length)];
+    selectWish(choice);
+  });
+
+  /* =========================================================
+     GIFT BOX INTERACTION
+     ========================================================= */
+
+  let giftOpened = false;
+
+  function openGift() {
+    const gift = $("#gift");
+
+    if (!giftOpened) {
+      giftOpened = true;
+      gift.classList.add("open");
+      $("#giftMessage").textContent =
+        "Bên trong là một lời nhắn: mong Nị luôn có lý do để mỉm cười, kể cả vào những ngày bình thường nhất. 💝";
+      launchFireworks(2);
+    } else {
+      gift.classList.add("open");
+      $("#giftMessage").textContent =
+        "Món quà vẫn ở đây, cùng lời chúc rằng tuổi mới của cậu sẽ thật nhiều điều tốt đẹp. ♡";
+    }
+  }
+
+  $("#giftStage").addEventListener("click", openGift);
+  $("#giftStage").addEventListener("keydown", event => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openGift();
+    }
+  });
+
+  $("#giftAgainBtn").addEventListener("click", () => {
+    giftOpened = false;
+    $("#gift").classList.remove("open");
+    $("#giftMessage").textContent = "Hộp quà đã được đóng lại. Chạm vào hộp để mở thêm lần nữa nhé!";
+  });
+
+  /* =========================================================
+     LETTER TYPEWRITER
+     ========================================================= */
+
+  const letterParagraphs = [
+    "Chào Nị,",
+    "Đây chỉ là một món quà nhỏ thôi, nhưng tớ đã muốn làm nó thành một nơi có nhiều điều dễ thương để cậu khám phá.",
+    "Sinh nhật không chỉ là thêm một tuổi, mà còn là dịp để nhìn lại những điều mình đã làm được và bắt đầu những điều mới mà mình mong chờ.",
+    "Mong cậu sẽ gặp những người thật lòng, có những ngày vui đến mức muốn kể cho cả thế giới nghe, và có đủ kiên nhẫn với bản thân trong những ngày chưa ổn.",
+    "Cảm ơn cậu đã dành thời gian mở món quà này. Chúc Nị sinh nhật vui vẻ, luôn mạnh khỏe và gặp nhiều may mắn."
+  ];
+
+  let typingInterval = null;
+  let letterHasTyped = false;
+
+  function typeLetter() {
+    if (typingInterval !== null) {
+      clearInterval(typingInterval);
+      typingInterval = null;
+    }
+
+    const container = $("#letterContent");
+    container.innerHTML = "";
+    letterHasTyped = false;
+
+    const nodes = letterParagraphs.map(() => {
+      const p = document.createElement("p");
+      container.appendChild(p);
+      return p;
+    });
+
+    let paragraphIndex = 0;
+    let characterIndex = 0;
+
+    typingInterval = setInterval(() => {
+      if (paragraphIndex >= letterParagraphs.length) {
+        clearInterval(typingInterval);
+        typingInterval = null;
+        letterHasTyped = true;
+        showToast("Lá thư đã hiện đầy đủ ♡");
+        return;
+      }
+
+      const text = letterParagraphs[paragraphIndex];
+      nodes[paragraphIndex].textContent = text.slice(0, characterIndex + 1);
+      characterIndex++;
+
+      if (characterIndex >= text.length) {
+        paragraphIndex++;
+        characterIndex = 0;
+      }
+    }, 28);
+  }
+
+  $("#typeLetterBtn").addEventListener("click", () => {
+    typeLetter();
+  });
+
+  /* =========================================================
+     PERSONAL ADVICE
+     ========================================================= */
+
+  const adviceList = [
+    "Đừng cố ép một người phải quay lại. Hãy cho họ không gian để lựa chọn.",
+    "Nếu muốn xin lỗi, hãy nói rõ mình hiểu điều gì đã làm người kia buồn và mình sẽ thay đổi ra sao.",
+    "Một cuộc trò chuyện chân thành không cần phải có kết quả ngay lập tức.",
+    "Hãy lắng nghe để hiểu, không chỉ lắng nghe để tìm câu trả lời mình muốn.",
+    "Tình cảm cần sự cố gắng từ cả hai phía. Đừng quên chăm sóc cảm xúc của chính mình nữa."
+  ];
+
+  $("#adviceBtn").addEventListener("click", () => {
+    const advice = adviceList[Math.floor(Math.random() * adviceList.length)];
+    $("#adviceResult").textContent = "✦ " + advice;
+  });
+
+  /* =========================================================
+     SECRET MESSAGE
+     ========================================================= */
+
+  $("#secretStar").addEventListener("click", () => {
+    $("#secretModal").classList.add("show");
+  });
+
+  $("#closeSecret").addEventListener("click", () => {
+    $("#secretModal").classList.remove("show");
+  });
+
+  $("#secretModal").addEventListener("click", event => {
+    if (event.target === $("#secretModal")) {
+      $("#secretModal").classList.remove("show");
+    }
+  });
+
+  /* =========================================================
+     MINI-GAME: FIND THE LUCKY STAR
+     ========================================================= */
+
+  let luckyIndex = -1;
+  let gameAttempts = 0;
+  let gameFinished = false;
+
+  function setupGame() {
+    const grid = $("#gameGrid");
+    grid.innerHTML = "";
+    gameAttempts = 0;
+    gameFinished = false;
+    luckyIndex = Math.floor(Math.random() * 9);
+
+    $("#gameStatus").textContent = "Cậu có 3 lượt để tìm ngôi sao may mắn!";
+
+    for (let i = 0; i < 9; i++) {
+      const tile = document.createElement("button");
+      tile.className = "star-tile";
+      tile.type = "button";
+      tile.textContent = "✧";
+      tile.setAttribute("aria-label", "Ô bí mật " + (i + 1));
+
+      tile.addEventListener("click", () => {
+        if (gameFinished || tile.disabled) return;
+
+        gameAttempts++;
+        tile.disabled = true;
+
+        if (i === luckyIndex) {
+          tile.textContent = "⭐";
+          tile.classList.add("found");
+          gameFinished = true;
+          $("#gameStatus").textContent =
+            "Cậu tìm được rồi! Ngôi sao may mắn hôm nay thuộc về Nị. ✨";
+          launchFireworks(2);
+
+          $$(".star-tile", grid).forEach(other => {
+            if (other !== tile) other.disabled = true;
+          });
+          return;
+        }
+
+        tile.textContent = "·";
+        $("#gameStatus").textContent =
+          gameAttempts >= 3
+            ? "Hết lượt rồi! Ngôi sao sẽ chờ cậu ở ván tiếp theo. ♡"
+            : "Chưa phải ô đó! Còn " + (3 - gameAttempts) + " lượt nữa.";
+
+        if (gameAttempts >= 3) {
+          gameFinished = true;
+          const correctTile = $$(".star-tile", grid)[luckyIndex];
+          correctTile.textContent = "⭐";
+          correctTile.classList.add("found");
+          $$(".star-tile", grid).forEach(other => other.disabled = true);
+        }
+      });
+
+      grid.appendChild(tile);
+    }
+  }
+
+  $("#resetGame").addEventListener("click", setupGame);
+  $("#closeGame").addEventListener("click", () => {
+    $("#gameModal").classList.remove("show");
+  });
+
+  // Open the mini-game by clicking the secret star twice.
+  let secretClickCount = 0;
+  let secretClickReset = null;
+
+  $("#secretStar").addEventListener("click", () => {
+    secretClickCount++;
+    clearTimeout(secretClickReset);
+
+    secretClickReset = setTimeout(() => {
+      secretClickCount = 0;
+    }, 900);
+
+    if (secretClickCount >= 2) {
+      secretClickCount = 0;
+      $("#secretModal").classList.remove("show");
+      setupGame();
+      $("#gameModal").classList.add("show");
+    }
+  });
+
+  $("#gameModal").addEventListener("click", event => {
+    if (event.target === $("#gameModal")) {
+      $("#gameModal").classList.remove("show");
+    }
+  });
+
+  /* =========================================================
+     CANVAS STARFIELD
+     ========================================================= */
+
+  const starCanvas = $("#stars");
+  const starCtx = starCanvas.getContext("2d");
+  let starWidth = 0;
+  let starHeight = 0;
+  let stars = [];
+
+  function resizeStarCanvas() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    starWidth = window.innerWidth;
+    starHeight = window.innerHeight;
+
+    starCanvas.width = Math.floor(starWidth * dpr);
+    starCanvas.height = Math.floor(starHeight * dpr);
+    starCanvas.style.width = starWidth + "px";
+    starCanvas.style.height = starHeight + "px";
+    starCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const count = Math.min(180, Math.floor(starWidth * starHeight / 6500));
+
+    stars = Array.from({ length: count }, () => ({
+      x: Math.random() * starWidth,
+      y: Math.random() * starHeight,
+      r: Math.random() * 1.5 + .3,
+      alpha: Math.random() * .7 + .2,
+      speed: Math.random() * .009 + .002,
+      phase: Math.random() * Math.PI * 2
+    }));
+  }
+
+  function drawStars(time = 0) {
+    starCtx.clearRect(0, 0, starWidth, starHeight);
+
+    for (const star of stars) {
+      const twinkle = .5 + .5 * Math.sin(time * star.speed + star.phase);
+      const alpha = star.alpha * (.45 + twinkle * .55);
+
+      starCtx.beginPath();
+      starCtx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+      starCtx.fillStyle = `rgba(255,239,255,${alpha})`;
+      starCtx.fill();
+
+      if (star.r > 1.25) {
+        starCtx.fillStyle = `rgba(213,195,255,${alpha * .25})`;
+        starCtx.fillRect(star.x - 4, star.y - .5, 8, 1);
+        starCtx.fillRect(star.x - .5, star.y - 4, 1, 8);
+      }
+    }
+
+    requestAnimationFrame(drawStars);
+  }
+
+  resizeStarCanvas();
+  requestAnimationFrame(drawStars);
+
+  window.addEventListener("resize", resizeStarCanvas);
+
+  /* =========================================================
+     FIREWORKS AND SPARKLES
+     ========================================================= */
+
+  const fxCanvas = $("#fx");
+  const fxCtx = fxCanvas.getContext("2d");
+  let fxWidth = 0;
+  let fxHeight = 0;
+  let particles = [];
+  let fxFrameRunning = false;
+
+  function resizeFxCanvas() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    fxWidth = window.innerWidth;
+    fxHeight = window.innerHeight;
+    fxCanvas.width = Math.floor(fxWidth * dpr);
+    fxCanvas.height = Math.floor(fxHeight * dpr);
+    fxCanvas.style.width = fxWidth + "px";
+    fxCanvas.style.height = fxHeight + "px";
+    fxCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function createBurst(x, y, amount = 65) {
+    const colors = ["#ffc3e4", "#d3c3ff", "#fff0c8", "#a9e8ff", "#ff9fd0"];
+
+    for (let i = 0; i < amount; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = Math.random() * 4.7 + 1.1;
+
+      particles.push({
+        x,
+        y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        life: 1,
+        decay: Math.random() * .012 + .009,
+        size: Math.random() * 2.7 + .8,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        gravity: .035 + Math.random() * .035
+      });
+    }
+
+    if (!fxFrameRunning) {
+      fxFrameRunning = true;
+      requestAnimationFrame(animateFireworks);
+    }
+  }
+
+  function animateFireworks() {
+    fxCtx.clearRect(0, 0, fxWidth, fxHeight);
+
+    particles = particles.filter(particle => particle.life > 0);
+
+    for (const p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += p.gravity;
+      p.vx *= .987;
+      p.vy *= .987;
+      p.life -= p.decay;
+
+      fxCtx.globalAlpha = Math.max(0, p.life);
+      fxCtx.fillStyle = p.color;
+      fxCtx.beginPath();
+      fxCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      fxCtx.fill();
+    }
+
+    fxCtx.globalAlpha = 1;
+
+    if (particles.length > 0) {
+      requestAnimationFrame(animateFireworks);
+    } else {
+      fxFrameRunning = false;
+      fxCtx.clearRect(0, 0, fxWidth, fxHeight);
+    }
+  }
+
+  function launchFireworks(bursts = 1) {
+    for (let i = 0; i < bursts; i++) {
+      setTimeout(() => {
+        const x = fxWidth * (.2 + Math.random() * .6);
+        const y = fxHeight * (.18 + Math.random() * .38);
+        createBurst(x, y, 45 + Math.floor(Math.random() * 35));
+      }, i * 250);
+    }
+  }
+
+  $("#fireworkBtn").addEventListener("click", () => {
+    launchFireworks(7);
+    showToast("Ước gì những điều tốt đẹp cũng nở rộ trong tuổi mới của Nị! ✨");
+  });
+
+  $("#sparkBtn").addEventListener("click", () => {
+    launchFireworks(2);
+    createFloatingHeart(window.innerWidth * .5, window.innerHeight * .5);
+    showToast("Một chút lấp lánh dành cho cậu ✧");
+  });
+
+  window.addEventListener("resize", resizeFxCanvas);
+  resizeFxCanvas();
+
+  /* =========================================================
+     FLOATING HEARTS
+     ========================================================= */
+
+  function createFloatingHeart(x, y) {
+    const heart = document.createElement("span");
+    const symbols = ["♡", "✦", "✧", "♥"];
+    heart.className = "heart-float";
+    heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    heart.style.left = x + "px";
+    heart.style.top = y + "px";
+    heart.style.color = Math.random() > .5 ? "#ffc3e4" : "#d4c3ff";
+    heart.style.fontSize = (16 + Math.random() * 18) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 2300);
+  }
+
+  document.addEventListener("click", event => {
+    if (event.target.closest("button, .modal, .gift-stage, .game-grid")) return;
+
+    if (Math.random() > .4) {
+      createFloatingHeart(event.clientX, event.clientY);
+    }
+  });
+
+  /* =========================================================
+     STARTUP
+     ========================================================= */
+
+  navigateTo(0);
+  setupGame();
+
+  // This is a gentle attempt, not a promise that every browser
+  // will permit audible autoplay without a user gesture.
+  setTimeout(() => {
+    if (!musicEnabled) tryStartMusic();
+  }, 500);
+
+})();
+</script>
+
+<script>
+(() => {
+  const lock = document.getElementById("birthday-lock");
+  const countdown = document.getElementById("birthday-countdown");
+
+  // Sinh nhật Nị: 11/03/2027, giờ Việt Nam (UTC+7)
+  const birthday = new Date("2026-11-03T00:00:00+07:00").getTime();
+
+  function updateBirthdayLock() {
+    const now = Date.now();
+    const remaining = birthday - now;
+
+    if (remaining <= 0) {
+      lock.classList.remove("show");
+      document.body.style.overflow = "";
+      return;
+    }
+
+    lock.classList.add("show");
+    document.body.style.overflow = "hidden";
+
+    const days = Math.floor(remaining / 86400000);
+    const hours = Math.floor((remaining % 86400000) / 3600000);
+    const minutes = Math.floor((remaining % 3600000) / 60000);
+    const seconds = Math.floor((remaining % 60000) / 1000);
+
+    countdown.textContent =
+      `${days} ngày ${hours} giờ ${minutes} phút ${seconds} giây`;
+  }
+
+  updateBirthdayLock();
+  setInterval(updateBirthdayLock, 1000);
+})();
+</script>
+</body>
+</html>
